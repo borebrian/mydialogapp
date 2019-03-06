@@ -13,13 +13,35 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         one.setOnClickListener() {
-           val snack = Snackbar.make(it,"1",Snackbar.LENGTH_SHORT)
+            val snack = Snackbar.make(it, "1", Snackbar.LENGTH_SHORT)
             snack.show()
 
         }
 
 
-            two.setOnClickListener() {
+        two.setOnClickListener() {
+            val build = AlertDialog.Builder(this)
+            build.setTitle("Confirm")
+            build.setMessage("Are you sure you want to press 2?")
+            build.setPositiveButton("YES") { dialog, which ->
+                val snack = Snackbar.make(it, "Two pressed", Snackbar.LENGTH_SHORT).show()
+            }
+            build.setNegativeButton("NO") { dialog, which ->
+                Toast.makeText(this, "No pressed", Toast.LENGTH_SHORT).show()
+            }
+            build.setNeutralButton("CANCEL") { _, _ ->
+                val show = Snackbar.make(it, "Cancel pressed!", Snackbar.LENGTH_SHORT).show()
+
+            }
+            val dialog: AlertDialog = build.create()
+            dialog.show()
+
+
+        }
+
+
+
+            three.setOnClickListener() {
                 val build=AlertDialog.Builder(this)
                 build.setTitle("Are you sure you want to select 1?")
                 build.setMessage("Confirm first please!")
@@ -28,15 +50,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 build.setNegativeButton("No"){dialog, which ->
                     results.text="0"
-                                    }
+                }
                 build.setNeutralButton("IGNORE"){_,_ ->
                     Toast.makeText(this,"Neutral",Toast.LENGTH_SHORT).show()
                 }
                 val dialog: AlertDialog=build.create()
                 dialog.show()
-
-            }
-            three.setOnClickListener() {
 
             }
             four.setOnClickListener() {

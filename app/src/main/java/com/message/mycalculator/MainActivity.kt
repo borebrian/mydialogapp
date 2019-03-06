@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +21,19 @@ class MainActivity : AppCompatActivity() {
 
             two.setOnClickListener() {
                 val build=AlertDialog.Builder(this)
+                build.setTitle("Are you sure you want to select 1?")
+                build.setMessage("Confirm first please!")
+                build.setPositiveButton("YES"){dialog, which ->             val snackbarr=Snackbar.make(it,"One pressed",Snackbar.LENGTH_SHORT).show()
+                    results.text="1"
+                }
+                build.setNegativeButton("No"){dialog, which ->
+                    results.text="0"
+                                    }
+                build.setNeutralButton("IGNORE"){_,_ ->
+                    Toast.makeText(this,"Neutral",Toast.LENGTH_SHORT).show()
+                }
+                val dialog: AlertDialog=build.create()
+                dialog.show()
 
             }
             three.setOnClickListener() {
